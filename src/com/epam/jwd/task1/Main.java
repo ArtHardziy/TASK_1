@@ -1,8 +1,17 @@
 package com.epam.jwd.task1;
 
+import com.epam.jwd.model.Figure;
+import com.epam.jwd.model.Line;
+import com.epam.jwd.model.LineFactory;
+import com.epam.jwd.model.NewFigure;
+import com.epam.jwd.model.Point;
+import com.epam.jwd.model.Square;
+import com.epam.jwd.model.SquareFactory;
+import com.epam.jwd.model.Triangle;
+import com.epam.jwd.model.TriangleFactory;
 import com.epam.jwd.strategy.Area;
 import com.epam.jwd.strategy.CalculateValue;
-import com.epam.jwd.strategy.Perimetr;
+import com.epam.jwd.strategy.Perimeter;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -37,12 +46,12 @@ public class Main {
     private static void area(Triangle[] triangles, Square[] squares, CalculateValue calc) {
         int num = 0;
         for(Triangle i : triangles) {
-            calc.setCharacteristicOfTheFigure(new Area());
+            calc.setCharacteristicOfTheFigure(Area.INSTANCE);
             LOGGER.info("Area triangle: " + (++num) +": "+ calc.executeCharacteristicOfTheFigure(i) );
         }
         num = 0;
         for(Square i : squares) {
-            calc.setCharacteristicOfTheFigure(new Area());
+            calc.setCharacteristicOfTheFigure(Area.INSTANCE);
             LOGGER.info("Area squares: " +( ++num ) + ": " + calc.executeCharacteristicOfTheFigure(i) );
         }
     }
@@ -50,12 +59,12 @@ public class Main {
     private static void perimetr(Triangle[] triangles, Square[] squares, CalculateValue calc) {
         int num = 0;
         for(Triangle i : triangles) {
-            calc.setCharacteristicOfTheFigure(new Perimetr());
+            calc.setCharacteristicOfTheFigure(Perimeter.getInstance());
             LOGGER.info("Perimetr triangle: " +(++num)+": "+ calc.executeCharacteristicOfTheFigure(i) );
         }
         num = 0;
         for(Square i : squares){
-            calc.setCharacteristicOfTheFigure((new Perimetr()));
+            calc.setCharacteristicOfTheFigure(Perimeter.getInstance());
             LOGGER.info("Perimetr squares: " +(++num)+": "+ calc.executeCharacteristicOfTheFigure(i) );
         }
     }
@@ -80,7 +89,7 @@ public class Main {
         }
     }
 
-    private static void outputResultOfLine(Line[] lines) {
+    private static void outputResultOfLine(Figure[] lines) {
         for(int i = 0; i < lines.length; i++){
             LOGGER.info("Array lines " + (i + 1) + lines[i] .toString());
         }
@@ -96,57 +105,68 @@ public class Main {
 
     private static void enterTheValueOfFigure(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares) {
         Scanner sc = new Scanner(System.in);
+        NewFigure newFigure = new NewFigure();
         enterTheValueOfPoint(points, sc);
-        enterValueOfLines(lines, sc);
-        enterValueOfTriangle(triangles, sc);
-        enterValueOfSquare(squares, sc);
+        enterValueOfLines(lines, sc, newFigure);
+        enterValueOfTriangle(triangles, sc, newFigure);
+        enterValueOfSquare(squares, sc, newFigure);
         sc.close();
     }
 
-    private static void enterValueOfSquare(Square[] squares, Scanner sc) {
+    private static void enterValueOfSquare(Square[] squares, Scanner sc, NewFigure newFigure) {
         System.out.println("Enter the point's for square(4)");
+        newFigure.chooseAbstractFigureFactory(new SquareFactory());
         for(int i = 0; i < squares.length; i++){
-            squares[i] = new Square(new Point(sc.nextInt(), sc.nextInt()),
-                    new Point(sc.nextInt(), sc.nextInt()),
-                    new Point(sc.nextInt(), sc.nextInt()),
-                    new Point(sc.nextInt(), sc.nextInt()));
+            Point[] points = new Point[4];
+            points[0] = new Point(sc.nextInt(), sc.nextInt());
+            points[1] = new Point(sc.nextInt(), sc.nextInt());
+            points[2] = new Point(sc.nextInt(), sc.nextInt());
+            points[3] = new Point(sc.nextInt(), sc.nextInt());
+            squares[i] = (Square) newFigure.creation(points);
         }
-        for(int i = 0; i < squares.length; i++){
-            if(squares[i].getP(0).equals(squares[i].getP(1))
-                    || squares[i].getP(1).equals(squares[i].getP(2))
-                    || squares[i].getP(2).equals(squares[i].getP(3))
-                    || squares[i].getP(3).equals(squares[i].getP(0))){
-                LOGGER.error("The object " + squares[i].toString() + " is not exist !!!");
+        for (Square square : squares) {
+            if (square.getP(0).equals(square.getP(1))
+                    || square.getP(1).equals(square.getP(2))
+                    || square.getP(2).equals(square.getP(3))
+                    || square.getP(3).equals(square.getP(0))) {
+                LOGGER.error("The object " + square.toString() + " is not exist !!!");
             }
         }
         System.out.println("successfully");
     }
 
-    private static void enterValueOfTriangle(Triangle[] triangles, Scanner sc) {
+    private static void enterValueOfTriangle(Triangle[] triangles, Scanner sc, NewFigure newFigure) {
         System.out.println("Enter the point's for triangles(3)");
+        newFigure.chooseAbstractFigureFactory(new TriangleFactory());
         for(int i = 0; i < triangles.length; i++){
-            triangles[i] = new Triangle(new Point(sc.nextInt(), sc.nextInt()),
-                    new Point(sc.nextInt(), sc.nextInt()),
-                    new Point(sc.nextInt(), sc.nextInt()));
+            Point[] points = new Point[3];
+            points[0] = new Point(sc.nextInt(), sc.nextInt());
+            points[1] = new Point(sc.nextInt(), sc.nextInt());
+            points[2] = new Point(sc.nextInt(), sc.nextInt());
+            triangles[i] = (Triangle) newFigure.creation(points);
         }
-        for(int i = 0; i < triangles.length; i++){
-            if(triangles[i].getP(0).equals(triangles[i].getP(1))
-                    || triangles[i].getP(1).equals(triangles[i].getP(2))
-                    || triangles[i].getP(0).equals(triangles[i].getP(2))){
-                LOGGER.error("The object " + triangles[i].toString() + " is not exist !!!");
+        for (Triangle triangle : triangles) {
+            if (triangle.getP(0).equals(triangle.getP(1))
+                    || triangle.getP(1).equals(triangle.getP(2))
+                    || triangle.getP(0).equals(triangle.getP(2))) {
+                LOGGER.error("The object " + triangle.toString() + " is not exist !!!");
             }
         }
         System.out.println("Successfully, construction completed!");
     }
 
-    private static void enterValueOfLines(Line[] lines, Scanner sc) {
+    private static void enterValueOfLines(Line[] lines, Scanner sc, NewFigure newfigure) {
         System.out.println("Enter the point's for lines(2)");
+        newfigure.chooseAbstractFigureFactory(new LineFactory());
         for(int i = 0; i < lines.length; i++){
-            lines[i] = new Line(new Point(sc.nextInt(), sc.nextInt()), new Point(sc.nextInt(), sc.nextInt()));
+            Point[] point = new Point[2];
+            point[0] = new Point(sc.nextInt(), sc.nextInt());
+            point[1] = new Point(sc.nextInt(), sc.nextInt());
+            lines[i] = (Line) newfigure.creation(point);
         }
-        for(int i = 0; i < lines.length; i++){
-            if(lines[i].getP(0).equals(lines[i].getP(1))){
-                LOGGER.error("The object " + lines[i].toString() + " is not exist !!!");
+        for (Figure line : lines) {
+            if (line.getP(0).equals(line.getP(1))) {
+                LOGGER.error("The object " + line.toString() + " is not exist !!!");
             }
         }
         System.out.println("Successfully, construction completed!!!");

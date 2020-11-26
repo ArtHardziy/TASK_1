@@ -1,6 +1,6 @@
 package com.epam.jwd.strategy;
 
-import com.epam.jwd.task1.Figure;
+import com.epam.jwd.model.Figure;
 
 public class CalculateValue {
     public CharacteristicOfTheFigure characteristicOfTheFigure;

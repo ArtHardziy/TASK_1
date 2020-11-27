@@ -20,7 +20,7 @@ public class Perimeter implements CharacteristicOfTheFigure {
         double perimeter = 0;
         int i = 0;
         while(i < figure.getNumberOfSide()){
-            perimeter += figure.getLengthSide(i);
+            perimeter += figure.getSide(i).getLenght();
             i++;
         }
         return perimeter;

@@ -1,12 +1,8 @@
 package com.epam.jwd.model;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-
 import java.util.Objects;
 
 public class Point {
-    private static final Logger LOGGER = LogManager.getLogger(Figure.class);
     private final int x;
     private final int y;
 
@@ -22,19 +18,10 @@ public class Point {
         return y;
     }
 
-    /*public boolean isItAFigure() {
-        return false;
-    };*/
-
     @Override
     public String toString() {
-   //     LOGGER.info("Point with coordinates (" + this.x + "; " + this.y + ");" +" was created!" );
         return " Point(" + this.x + "; " + this.y + ") ";
     }
-
-    /*public int getNumberOfSide(){
-        return 0;
-    }*/
 
     @Override
     public boolean equals(Object o) {

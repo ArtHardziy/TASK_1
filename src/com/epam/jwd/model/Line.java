@@ -22,17 +22,15 @@ public class Line implements Figure {
     }
 
     public double getLenght(){
-      return Math.sqrt(Math.pow((point[1].getX() - point[0].getX()),2) - Math.pow((point[1].getY() - point[0].getY()),2));
+      return Math.sqrt(Math.abs(Math.pow((point[1].getX() - point[0].getX()),2) - Math.pow((point[1].getY() - point[0].getY()),2)));
     };
 
     public boolean isItAFigure() {
         return false;
-        //LOGGER.info("It's not a figure. It's a line!");
     }
 
     @Override
     public String toString() {
-  //      LOGGER.info("Line with point's: " + p1.toString() + p2.toString() + ";" );
         return "Line" + point[0].toString() + point[1].toString();
     }
 
@@ -54,8 +52,8 @@ public class Line implements Figure {
     }
 
     @Override
-    public double getLengthSide(int i) {
-        return getLenght();
+    public Line getSide(int i) {
+        return new Line(point[0],point[1]);
     }
 
     @Override

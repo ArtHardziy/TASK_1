@@ -59,8 +59,8 @@ public class Triangle implements Figure {
     }
 
     @Override
-    public double getLengthSide(int i) {
-        return side[i].getLenght();
+    public Line getSide(int i) {
+        return side[i];
     }
 
     @Override

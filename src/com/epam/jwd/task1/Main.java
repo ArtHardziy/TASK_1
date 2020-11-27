@@ -3,6 +3,8 @@ package com.epam.jwd.task1;
 import com.epam.jwd.model.Figure;
 import com.epam.jwd.model.Line;
 import com.epam.jwd.model.LineFactory;
+import com.epam.jwd.model.MultiAngleFactory;
+import com.epam.jwd.model.MultiAngleFigure;
 import com.epam.jwd.model.NewFigure;
 import com.epam.jwd.model.Point;
 import com.epam.jwd.model.Square;
@@ -25,16 +27,24 @@ public class Main {
         Line[] lines = new Line[2];
         Triangle[] triangles = new Triangle[2];
         Square[] squares= new Square[1];
-        enterTheValueOfFigure(points, lines, triangles, squares);
-        outputResult(points, lines, triangles, squares);
+        MultiAngleFigure[] poligon = new MultiAngleFigure[1];
+        enterTheValueOfFigure(points, lines, triangles, squares, poligon);
+        outputResult(points, lines, triangles, squares, poligon);
     }
 
-    private static void outputResult(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares) {
+    private static void outputResult(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares, MultiAngleFigure[] poligon) {
         outputResultOfPoint(points);
         outputResultOfLine(lines);
         outputResultOfTriangle(triangles);
         outputResultOfSquare(squares);
         strategy(triangles, squares);
+        for(int i = 0; i < poligon.length; i++){
+            StringBuilder info = new StringBuilder(" Poligon ");
+            for(int j = 0; j < poligon.length; j++){
+                info.append(poligon.toString());
+            }
+            LOGGER.info(info.toString());
+        }
     }
 
     private static void strategy(Triangle[] triangles, Square[] squares) {
@@ -103,13 +113,29 @@ public class Main {
         }while(j < points.length);
     }
 
-    private static void enterTheValueOfFigure(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares) {
+    private static void enterTheValueOfFigure(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares, MultiAngleFigure[] poligon) {
         Scanner sc = new Scanner(System.in);
         NewFigure newFigure = new NewFigure();
         enterTheValueOfPoint(points, sc);
         enterValueOfLines(lines, sc, newFigure);
         enterValueOfTriangle(triangles, sc, newFigure);
         enterValueOfSquare(squares, sc, newFigure);
+        enterValueOfPoligon(poligon, sc, newFigure);
+    }
+
+    private static void enterValueOfPoligon(MultiAngleFigure[] poligon, Scanner sc, NewFigure newFigure) {
+        newFigure.chooseAbstractFigureFactory(new MultiAngleFactory());
+        for(int i = 0; i < poligon.length; i++){
+            System.out.println(" Now you start enter points for poligon");
+            System.out.println("Enter number of angle:");
+            int angle = sc.nextInt();
+            Point[] p = new Point[angle];
+            for(int j = 0; j < angle; j++){
+                p[i] = new Point(sc.nextInt(), sc.nextInt());
+            }
+            poligon[i] = (MultiAngleFigure) newFigure.creation(p);
+            System.out.println("successfully");
+        }
         sc.close();
     }
 

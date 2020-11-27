@@ -12,10 +12,6 @@ public class Square implements Figure {
     private final Line[] side = new Line[4];
     private final Line[] diagonal = new Line[2];
 
-    public Line[] getSide() {
-        return side;
-    }
-
     protected Square(Point p1, Point p2, Point p3, Point p4){
         this.points[0] = p1;
         this.points[1] = p2;
@@ -59,8 +55,8 @@ public class Square implements Figure {
     }
 
     @Override
-    public double getLengthSide(int i) {
-        return this.side[i].getLenght();
+    public Line getSide(int i) {
+        return this.side[i];
     }
 
     @Override

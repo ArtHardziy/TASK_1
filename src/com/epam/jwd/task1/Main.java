@@ -124,7 +124,7 @@ public class Main {
     }
 
     private static void enterValueOfPoligon(MultiAngleFigure[] poligon, Scanner sc, NewFigure newFigure) {
-        newFigure.chooseAbstractFigureFactory(new MultiAngleFactory());
+        newFigure.chooseAbstractFigureFactory(MultiAngleFactory.getInstance());
         for(int i = 0; i < poligon.length; i++){
             System.out.println(" Now you start enter points for poligon");
             System.out.println("Enter number of angle:");
@@ -141,7 +141,7 @@ public class Main {
 
     private static void enterValueOfSquare(Square[] squares, Scanner sc, NewFigure newFigure) {
         System.out.println("Enter the point's for square(4)");
-        newFigure.chooseAbstractFigureFactory(new SquareFactory());
+        newFigure.chooseAbstractFigureFactory(SquareFactory.getInstance());
         for(int i = 0; i < squares.length; i++){
             Point[] points = new Point[4];
             points[0] = new Point(sc.nextInt(), sc.nextInt());
@@ -163,7 +163,7 @@ public class Main {
 
     private static void enterValueOfTriangle(Triangle[] triangles, Scanner sc, NewFigure newFigure) {
         System.out.println("Enter the point's for triangles(3)");
-        newFigure.chooseAbstractFigureFactory(new TriangleFactory());
+        newFigure.chooseAbstractFigureFactory(TriangleFactory.getInstance());
         for(int i = 0; i < triangles.length; i++){
             Point[] points = new Point[3];
             points[0] = new Point(sc.nextInt(), sc.nextInt());
@@ -183,7 +183,7 @@ public class Main {
 
     private static void enterValueOfLines(Line[] lines, Scanner sc, NewFigure newfigure) {
         System.out.println("Enter the point's for lines(2)");
-        newfigure.chooseAbstractFigureFactory(new LineFactory());
+        newfigure.chooseAbstractFigureFactory(LineFactory.getInstance());
         for(int i = 0; i < lines.length; i++){
             Point[] point = new Point[2];
             point[0] = new Point(sc.nextInt(), sc.nextInt());

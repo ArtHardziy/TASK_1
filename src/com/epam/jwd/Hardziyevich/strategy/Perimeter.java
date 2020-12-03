@@ -1,7 +1,7 @@
-package com.epam.jwd.strategy;
+package com.epam.jwd.Hardziyevich.strategy;
 
 
-import com.epam.jwd.model.Figure;
+import com.epam.jwd.Hardziyevich.model.Figure;
 
 public class Perimeter implements CharacteristicOfTheFigure {
     private static Perimeter instance;

@@ -1,10 +1,13 @@
-package com.epam.jwd.model;
+package com.epam.jwd.Hardziyevich.model;
 
+import com.epam.jwd.Hardziyevich.services.ServicesPoint;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Scanner;
 
-public class MultiAngleFactory implements AbstractFigureFactory{
+
+public class MultiAngleFactory implements AbstractFigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(MultiAngleFactory.class);
     private static MultiAngleFactory instance;
 
@@ -18,9 +21,15 @@ public class MultiAngleFactory implements AbstractFigureFactory{
         }
         return instance;
     }
+
     @Override
-    public Figure createFigure(Point[] points) {
-        Figure multiAngleFigure = new MultiAngleFigure(points);
+    public Figure createFigure() {
+        Scanner sc = new Scanner(System.in);
+            LOGGER.info("Enter the number of angel: ");
+            int numberOfAngel = sc.nextInt();
+            sc.close();
+            Point[] p = ServicesPoint.enterPoints(numberOfAngel);
+            Figure multiAngleFigure = new MultiAngleFigure(p);
         LOGGER.info(" MultiAngleFigure was created by MultiAngleFactory ");
         return multiAngleFigure;
     }

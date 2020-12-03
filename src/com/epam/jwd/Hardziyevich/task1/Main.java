@@ -1,19 +1,19 @@
-package com.epam.jwd.task1;
+package com.epam.jwd.Hardziyevich.task1;
 
-import com.epam.jwd.model.Figure;
-import com.epam.jwd.model.Line;
-import com.epam.jwd.model.LineFactory;
-import com.epam.jwd.model.MultiAngleFactory;
-import com.epam.jwd.model.MultiAngleFigure;
-import com.epam.jwd.model.NewFigure;
-import com.epam.jwd.model.Point;
-import com.epam.jwd.model.Square;
-import com.epam.jwd.model.SquareFactory;
-import com.epam.jwd.model.Triangle;
-import com.epam.jwd.model.TriangleFactory;
-import com.epam.jwd.strategy.Area;
-import com.epam.jwd.strategy.CalculateValue;
-import com.epam.jwd.strategy.Perimeter;
+import com.epam.jwd.Hardziyevich.model.Figure;
+import com.epam.jwd.Hardziyevich.model.Line;
+import com.epam.jwd.Hardziyevich.model.LineFactory;
+import com.epam.jwd.Hardziyevich.model.MultiAngleFactory;
+import com.epam.jwd.Hardziyevich.model.MultiAngleFigure;
+import com.epam.jwd.Hardziyevich.model.NewFigure;
+import com.epam.jwd.Hardziyevich.model.Point;
+import com.epam.jwd.Hardziyevich.model.Square;
+import com.epam.jwd.Hardziyevich.model.SquareFactory;
+import com.epam.jwd.Hardziyevich.model.Triangle;
+import com.epam.jwd.Hardziyevich.model.TriangleFactory;
+import com.epam.jwd.Hardziyevich.strategy.Area;
+import com.epam.jwd.Hardziyevich.strategy.CalculateValue;
+import com.epam.jwd.Hardziyevich.strategy.Perimeter;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -114,42 +114,29 @@ public class Main {
     }
 
     private static void enterTheValueOfFigure(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares, MultiAngleFigure[] poligon) {
-        Scanner sc = new Scanner(System.in);
         NewFigure newFigure = new NewFigure();
-        enterTheValueOfPoint(points, sc);
-        enterValueOfLines(lines, sc, newFigure);
-        enterValueOfTriangle(triangles, sc, newFigure);
-        enterValueOfSquare(squares, sc, newFigure);
-        enterValueOfPoligon(poligon, sc, newFigure);
+        enterTheValueOfPoint(points);
+        enterValueOfLines(lines, newFigure);
+        enterValueOfTriangle(triangles, newFigure);
+        enterValueOfSquare(squares, newFigure);
+        enterValueOfPoligon(poligon, newFigure);
     }
 
-    private static void enterValueOfPoligon(MultiAngleFigure[] poligon, Scanner sc, NewFigure newFigure) {
+    private static void enterValueOfPoligon(MultiAngleFigure[] poligon, NewFigure newFigure) {
         newFigure.chooseAbstractFigureFactory(MultiAngleFactory.getInstance());
         for(int i = 0; i < poligon.length; i++){
-            System.out.println(" Now you start enter points for poligon");
-            System.out.println("Enter number of angle:");
-            int angle = sc.nextInt();
-            Point[] p = new Point[angle];
-            for(int j = 0; j < angle; j++){
-                p[i] = new Point(sc.nextInt(), sc.nextInt());
-            }
-            poligon[i] = (MultiAngleFigure) newFigure.creation(p);
-            System.out.println("successfully");
+            poligon[i] = (MultiAngleFigure) newFigure.creation();
+            LOGGER.info("Creation of poligons was ended");
         }
-        sc.close();
     }
 
-    private static void enterValueOfSquare(Square[] squares, Scanner sc, NewFigure newFigure) {
-        System.out.println("Enter the point's for square(4)");
+    private static void enterValueOfSquare(Square[] squares, NewFigure newFigure) {
+        LOGGER.info("Creation of squares started");
         newFigure.chooseAbstractFigureFactory(SquareFactory.getInstance());
         for(int i = 0; i < squares.length; i++){
-            Point[] points = new Point[4];
-            points[0] = new Point(sc.nextInt(), sc.nextInt());
-            points[1] = new Point(sc.nextInt(), sc.nextInt());
-            points[2] = new Point(sc.nextInt(), sc.nextInt());
-            points[3] = new Point(sc.nextInt(), sc.nextInt());
-            squares[i] = (Square) newFigure.creation(points);
+            squares[i] = (Square) newFigure.creation();
         }
+        LOGGER.info("Creation of square was ended");
         for (Square square : squares) {
             if (square.getP(0).equals(square.getP(1))
                     || square.getP(1).equals(square.getP(2))
@@ -158,19 +145,16 @@ public class Main {
                 LOGGER.error("The object " + square.toString() + " is not exist !!!");
             }
         }
-        System.out.println("successfully");
+        LOGGER.info("Creation of squares was ended");
     }
 
-    private static void enterValueOfTriangle(Triangle[] triangles, Scanner sc, NewFigure newFigure) {
-        System.out.println("Enter the point's for triangles(3)");
+    private static void enterValueOfTriangle(Triangle[] triangles, NewFigure newFigure) {
+        LOGGER.info("Started creation of tringles");
         newFigure.chooseAbstractFigureFactory(TriangleFactory.getInstance());
         for(int i = 0; i < triangles.length; i++){
-            Point[] points = new Point[3];
-            points[0] = new Point(sc.nextInt(), sc.nextInt());
-            points[1] = new Point(sc.nextInt(), sc.nextInt());
-            points[2] = new Point(sc.nextInt(), sc.nextInt());
-            triangles[i] = (Triangle) newFigure.creation(points);
+            triangles[i] = (Triangle) newFigure.creation();
         }
+        LOGGER.info("Creation of triangles was ended");
         for (Triangle triangle : triangles) {
             if (triangle.getP(0).equals(triangle.getP(1))
                     || triangle.getP(1).equals(triangle.getP(2))
@@ -181,15 +165,13 @@ public class Main {
         System.out.println("Successfully, construction completed!");
     }
 
-    private static void enterValueOfLines(Line[] lines, Scanner sc, NewFigure newfigure) {
-        System.out.println("Enter the point's for lines(2)");
+    private static void enterValueOfLines(Line[] lines, NewFigure newfigure) {
+        LOGGER.info("Started creation of lines");
         newfigure.chooseAbstractFigureFactory(LineFactory.getInstance());
         for(int i = 0; i < lines.length; i++){
-            Point[] point = new Point[2];
-            point[0] = new Point(sc.nextInt(), sc.nextInt());
-            point[1] = new Point(sc.nextInt(), sc.nextInt());
-            lines[i] = (Line) newfigure.creation(point);
+            lines[i] = (Line) newfigure.creation();
         }
+        LOGGER.info("Creation of lines was ended");
         for (Figure line : lines) {
             if (line.getP(0).equals(line.getP(1))) {
                 LOGGER.error("The object " + line.toString() + " is not exist !!!");
@@ -198,11 +180,15 @@ public class Main {
         System.out.println("Successfully, construction completed!!!");
     }
 
-    private static void enterTheValueOfPoint(Point[] points, Scanner sc) {
+    private static void enterTheValueOfPoint(Point[] points) {
+        LOGGER.info("Creation of points started");
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter the point's");
         for(int i = 0; i < points.length; i++){
            points[i] = new Point(sc.nextInt(), sc.nextInt());
         }
+        LOGGER.info("Successfully, creation of point complete");
         System.out.println("Successfully, construction completed!!!");
+        sc.close();
     }
 }

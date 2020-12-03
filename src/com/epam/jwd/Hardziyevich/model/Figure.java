@@ -1,4 +1,4 @@
-package com.epam.jwd.model;
+package com.epam.jwd.Hardziyevich.model;
 
 public interface Figure {
     boolean isItAFigure();

@@ -1,4 +1,4 @@
-package com.epam.jwd.model;
+package com.epam.jwd.Hardziyevich.model;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;

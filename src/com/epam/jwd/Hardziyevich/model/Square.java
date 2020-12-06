@@ -12,7 +12,7 @@ public class Square implements Figure {
     private final Line[] side = new Line[4];
     private final Line[] diagonal = new Line[2];
 
-    protected Square(Point p1, Point p2, Point p3, Point p4){
+    Square(Point p1, Point p2, Point p3, Point p4){
         this.points[0] = p1;
         this.points[1] = p2;
         this.points[2] = p3;

@@ -10,7 +10,14 @@ public class NewFigure {
     private AbstractFigureFactory abstractFigureFactory;
 
     public Figure creation() {
-        return abstractFigureFactory.createFigure();
+        while(true) {
+            try {
+                return abstractFigureFactory.createFigure();
+            } catch (FigureNotExistException e) {
+                LOGGER.error(e.getStackTrace());
+                LOGGER.info("Enter the points again");
+            }
+        }
     }
 
     public void chooseAbstractFigureFactory(AbstractFigureFactory factory) {

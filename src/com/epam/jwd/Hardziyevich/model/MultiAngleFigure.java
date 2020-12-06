@@ -11,7 +11,7 @@ public class MultiAngleFigure implements Figure {
     private final Line[] side;
 
 
-    protected MultiAngleFigure(Point[] points){
+    MultiAngleFigure(Point[] points){
         this.points = points;
         this.side = new Line[points.length];
         for(int i = 0; i < points.length - 1; i++){

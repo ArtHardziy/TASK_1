@@ -3,7 +3,7 @@ package com.epam.jwd.Hardziyevich.strategy;
 import com.epam.jwd.Hardziyevich.model.Figure;
 
 public class CalculateValue {
-    public CharacteristicOfTheFigure characteristicOfTheFigure;
+    private CharacteristicOfTheFigure characteristicOfTheFigure;
 
     public void setCharacteristicOfTheFigure(CharacteristicOfTheFigure characteristicOfTheFigure){
         this.characteristicOfTheFigure = characteristicOfTheFigure;

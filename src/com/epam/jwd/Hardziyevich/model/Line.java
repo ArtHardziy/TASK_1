@@ -9,7 +9,7 @@ public class Line implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(Line.class);
     private final Point[] point = new Point[2];
 
-    protected Line(Point p1, Point p2){
+    Line(Point p1, Point p2){
         this.point[0] = p1;
         this.point[1] = p2;
     }

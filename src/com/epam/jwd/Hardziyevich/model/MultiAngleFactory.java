@@ -1,6 +1,9 @@
 package com.epam.jwd.Hardziyevich.model;
 
+import com.epam.jwd.Hardziyevich.exception.FigureException;
 import com.epam.jwd.Hardziyevich.services.ServicesPoint;
+import com.epam.jwd.Hardziyevich.services.impl.FigureExistencePostProcessor;
+import com.epam.jwd.Hardziyevich.services.impl.MultiAngleFigureExistencePostProcessor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +34,13 @@ public class MultiAngleFactory implements AbstractFigureFactory {
             Point[] p = ServicesPoint.enterPoints(numberOfAngel);
             Figure multiAngleFigure = new MultiAngleFigure(p);
         LOGGER.info(" MultiAngleFigure was created by MultiAngleFactory ");
+        try{
+            FigureExistencePostProcessor postProcessor = new FigureExistencePostProcessor();
+            postProcessor.setFigurePostProcessor(MultiAngleFigureExistencePostProcessor.getInstance());
+            postProcessor.executeFigureExistencePostProcessor(multiAngleFigure);
+        }catch (FigureException e){
+            LOGGER.error(e.getMessage() + e.getStackTrace());
+        }
         return multiAngleFigure;
     }
 }

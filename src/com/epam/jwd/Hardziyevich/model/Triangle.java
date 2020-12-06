@@ -15,7 +15,7 @@ public class Triangle implements Figure {
         return side;
     }
 
-    protected Triangle(Point p1, Point p2, Point p3){
+    Triangle(Point p1, Point p2, Point p3){
         this.point[0] = p1;
         this.point[1] = p2;
         this.point[2] = p3;

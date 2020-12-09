@@ -1,6 +1,6 @@
 package com.epam.jwd.Hardziyevich.strategy;
 
-import com.epam.jwd.Hardziyevich.model.Figure;
+import com.epam.jwd.Hardziyevich.model.api.Figure;
 
 public enum Area implements CharacteristicOfTheFigure {
     INSTANCE;

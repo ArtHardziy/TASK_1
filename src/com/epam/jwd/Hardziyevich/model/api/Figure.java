@@ -1,4 +1,6 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.api;
+
+import com.epam.jwd.Hardziyevich.model.impl.Line;
 
 public interface Figure {
     boolean isItAFigure();
@@ -8,5 +10,6 @@ public interface Figure {
     Point getP(int i);
     Point[] getPoint();
     String toString();
-
+    static final String FIGURE_TYPE = "Figure";
+    String getFigureType();
 }

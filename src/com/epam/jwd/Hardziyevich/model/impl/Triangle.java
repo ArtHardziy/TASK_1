@@ -1,5 +1,7 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.impl;
 
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.model.api.Point;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -9,7 +11,11 @@ public class Triangle implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(Triangle.class);
     private final Point[] point = new Point[3];
     private final Line[] side = new Line[3];
-    //private int[] length;
+    private static final String FIGURE_TYPE = "Triangle";
+
+    public String getFigureType(){
+        return FIGURE_TYPE;
+    }
 
     public Line[] getSide() {
         return side;

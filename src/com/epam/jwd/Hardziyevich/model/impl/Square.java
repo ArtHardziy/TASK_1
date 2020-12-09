@@ -1,5 +1,7 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.impl;
 
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.model.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +13,11 @@ public class Square implements Figure {
     private final Point[] points = new Point[4];
     private final Line[] side = new Line[4];
     private final Line[] diagonal = new Line[2];
+    private static final String FIGURE_TYPE = "Square";
+
+    public String getFigureType(){
+        return FIGURE_TYPE;
+    }
 
     Square(Point p1, Point p2, Point p3, Point p4){
         this.points[0] = p1;

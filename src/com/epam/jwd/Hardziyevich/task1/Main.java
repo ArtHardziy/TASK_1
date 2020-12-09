@@ -1,16 +1,16 @@
 package com.epam.jwd.Hardziyevich.task1;
 
-import com.epam.jwd.Hardziyevich.model.Figure;
-import com.epam.jwd.Hardziyevich.model.Line;
-import com.epam.jwd.Hardziyevich.model.LineFactory;
-import com.epam.jwd.Hardziyevich.model.MultiAngleFactory;
-import com.epam.jwd.Hardziyevich.model.MultiAngleFigure;
-import com.epam.jwd.Hardziyevich.model.NewFigure;
-import com.epam.jwd.Hardziyevich.model.Point;
-import com.epam.jwd.Hardziyevich.model.Square;
-import com.epam.jwd.Hardziyevich.model.SquareFactory;
-import com.epam.jwd.Hardziyevich.model.Triangle;
-import com.epam.jwd.Hardziyevich.model.TriangleFactory;
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.model.impl.Line;
+import com.epam.jwd.Hardziyevich.old.LineFactory;
+import com.epam.jwd.Hardziyevich.old.MultiAngleFactory;
+import com.epam.jwd.Hardziyevich.model.impl.MultiAngleFigure;
+import com.epam.jwd.Hardziyevich.model.impl.SimpleNewFigure;
+import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.model.impl.Square;
+import com.epam.jwd.Hardziyevich.old.SquareFactory;
+import com.epam.jwd.Hardziyevich.model.impl.Triangle;
+import com.epam.jwd.Hardziyevich.old.TriangleFactory;
 import com.epam.jwd.Hardziyevich.strategy.Area;
 import com.epam.jwd.Hardziyevich.strategy.CalculateValue;
 import com.epam.jwd.Hardziyevich.strategy.Perimeter;
@@ -114,27 +114,27 @@ public class Main {
     }
 
     private static void enterTheValueOfFigure(Point[] points, Line[] lines, Triangle[] triangles, Square[] squares, MultiAngleFigure[] poligon) {
-        NewFigure newFigure = new NewFigure();
+        SimpleNewFigure simpleNewFigure = new SimpleNewFigure();
         enterTheValueOfPoint(points);
-        enterValueOfLines(lines, newFigure);
-        enterValueOfTriangle(triangles, newFigure);
-        enterValueOfSquare(squares, newFigure);
-        enterValueOfPoligon(poligon, newFigure);
+        enterValueOfLines(lines, simpleNewFigure);
+        enterValueOfTriangle(triangles, simpleNewFigure);
+        enterValueOfSquare(squares, simpleNewFigure);
+        enterValueOfPoligon(poligon, simpleNewFigure);
     }
 
-    private static void enterValueOfPoligon(MultiAngleFigure[] poligon, NewFigure newFigure) {
-        newFigure.chooseAbstractFigureFactory(MultiAngleFactory.getInstance());
+    private static void enterValueOfPoligon(MultiAngleFigure[] poligon, SimpleNewFigure simpleNewFigure) {
+        simpleNewFigure.chooseAbstractFigureFactory(MultiAngleFactory.getInstance());
         for(int i = 0; i < poligon.length; i++){
-            poligon[i] = (MultiAngleFigure) newFigure.creation();
+            poligon[i] = (MultiAngleFigure) simpleNewFigure.creation();
             LOGGER.info("Creation of poligons was ended");
         }
     }
 
-    private static void enterValueOfSquare(Square[] squares, NewFigure newFigure) {
+    private static void enterValueOfSquare(Square[] squares, SimpleNewFigure simpleNewFigure) {
         LOGGER.info("Creation of squares started");
-        newFigure.chooseAbstractFigureFactory(SquareFactory.getInstance());
+        simpleNewFigure.chooseAbstractFigureFactory(SquareFactory.getInstance());
         for(int i = 0; i < squares.length; i++){
-            squares[i] = (Square) newFigure.creation();
+            squares[i] = (Square) simpleNewFigure.creation();
         }
         LOGGER.info("Creation of square was ended");
         for (Square square : squares) {
@@ -148,11 +148,11 @@ public class Main {
         LOGGER.info("Creation of squares was ended");
     }
 
-    private static void enterValueOfTriangle(Triangle[] triangles, NewFigure newFigure) {
+    private static void enterValueOfTriangle(Triangle[] triangles, SimpleNewFigure simpleNewFigure) {
         LOGGER.info("Started creation of tringles");
-        newFigure.chooseAbstractFigureFactory(TriangleFactory.getInstance());
+        simpleNewFigure.chooseAbstractFigureFactory(TriangleFactory.getInstance());
         for(int i = 0; i < triangles.length; i++){
-            triangles[i] = (Triangle) newFigure.creation();
+            triangles[i] = (Triangle) simpleNewFigure.creation();
         }
         LOGGER.info("Creation of triangles was ended");
         for (Triangle triangle : triangles) {
@@ -165,7 +165,7 @@ public class Main {
         System.out.println("Successfully, construction completed!");
     }
 
-    private static void enterValueOfLines(Line[] lines, NewFigure newfigure) {
+    private static void enterValueOfLines(Line[] lines, SimpleNewFigure newfigure) {
         LOGGER.info("Started creation of lines");
         newfigure.chooseAbstractFigureFactory(LineFactory.getInstance());
         for(int i = 0; i < lines.length; i++){

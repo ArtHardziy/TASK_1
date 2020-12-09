@@ -1,8 +1,8 @@
 package com.epam.jwd.Hardziyevich.services.impl;
 
 import com.epam.jwd.Hardziyevich.exception.FigureException;
-import com.epam.jwd.Hardziyevich.model.Figure;
-import com.epam.jwd.Hardziyevich.services.FigurePostProcessor;
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
 
 public class LineExistencePostProcessor implements FigurePostProcessor {
     private static LineExistencePostProcessor instance;

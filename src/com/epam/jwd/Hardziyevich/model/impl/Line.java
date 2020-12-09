@@ -1,5 +1,7 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.impl;
 
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.model.api.Point;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -8,6 +10,11 @@ import java.util.Arrays;
 public class Line implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(Line.class);
     private final Point[] point = new Point[2];
+    private static final String FIGURE_TYPE = "Line";
+
+    public String getFigureType(){
+        return FIGURE_TYPE;
+    }
 
     Line(Point p1, Point p2){
         this.point[0] = p1;

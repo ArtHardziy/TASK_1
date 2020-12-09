@@ -1,4 +1,4 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.api;
 
 import java.util.Objects;
 

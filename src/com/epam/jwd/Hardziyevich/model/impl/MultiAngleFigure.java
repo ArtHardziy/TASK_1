@@ -1,5 +1,7 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.model.impl;
 
+import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.model.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Arrays;
@@ -9,6 +11,11 @@ public class MultiAngleFigure implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(MultiAngleFigure.class);
     private final Point[] points;
     private final Line[] side;
+    static final String FIGURE_TYPE = "MultiAngleFigure";
+
+    public String getFigureType(){
+        return FIGURE_TYPE;
+    }
 
 
     MultiAngleFigure(Point[] points){

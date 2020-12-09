@@ -1,16 +1,17 @@
-package com.epam.jwd.Hardziyevich.model;
+package com.epam.jwd.Hardziyevich.old;
 
 import com.epam.jwd.Hardziyevich.exception.FigureException;
-import com.epam.jwd.Hardziyevich.services.FigurePostProcessor;
+import com.epam.jwd.Hardziyevich.model.api.FigureFactory;
+import com.epam.jwd.Hardziyevich.model.api.FigureType;
+import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.model.impl.Square;
 import com.epam.jwd.Hardziyevich.services.ServicesPoint;
 import com.epam.jwd.Hardziyevich.services.impl.FigureExistencePostProcessor;
 import com.epam.jwd.Hardziyevich.services.impl.SquareExistencePostProcessor;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import java.util.Scanner;
-
-public class SquareFactory implements AbstractFigureFactory {
+public class SquareFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SquareFactory.class);
     private static SquareFactory instance;
 
@@ -26,9 +27,9 @@ public class SquareFactory implements AbstractFigureFactory {
     }
 
     @Override
-    public Figure createFigure() {
+    public FigureType createFigure() {
         Point[] p = ServicesPoint.enterPoints(4);
-        Figure square = new Square(p[0], p[1], p[2], p[3]);
+        FigureType square = new Square(p[0], p[1], p[2], p[3]);
         LOGGER.info(" Square was created by SquareFactory ");
         try {
             FigureExistencePostProcessor postProcessor = new FigureExistencePostProcessor();

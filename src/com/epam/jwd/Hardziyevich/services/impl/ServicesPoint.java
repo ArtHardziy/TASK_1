@@ -1,6 +1,6 @@
-package com.epam.jwd.Hardziyevich.services;
+package com.epam.jwd.Hardziyevich.services.impl;
 
-import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 

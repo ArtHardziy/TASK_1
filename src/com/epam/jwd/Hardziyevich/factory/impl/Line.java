@@ -1,7 +1,7 @@
-package com.epam.jwd.Hardziyevich.model.impl;
+package com.epam.jwd.Hardziyevich.factory.impl;
 
-import com.epam.jwd.Hardziyevich.model.api.Figure;
-import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -11,6 +11,7 @@ public class Line implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(Line.class);
     private final Point[] point = new Point[2];
     private static final String FIGURE_TYPE = "Line";
+    private long id = 0;
 
     public String getFigureType(){
         return FIGURE_TYPE;
@@ -71,5 +72,15 @@ public class Line implements Figure {
     @Override
     public Point[] getPoint() {
         return point;
+    }
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int newId) {
+        this.id = newId;
     }
 }

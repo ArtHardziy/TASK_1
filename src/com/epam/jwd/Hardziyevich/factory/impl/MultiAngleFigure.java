@@ -1,9 +1,10 @@
-package com.epam.jwd.Hardziyevich.model.impl;
+package com.epam.jwd.Hardziyevich.factory.impl;
 
-import com.epam.jwd.Hardziyevich.model.api.Figure;
-import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import java.util.Arrays;
 
 
@@ -12,20 +13,30 @@ public class MultiAngleFigure implements Figure {
     private final Point[] points;
     private final Line[] side;
     static final String FIGURE_TYPE = "MultiAngleFigure";
+    private long id = 0;
 
-    public String getFigureType(){
+    public String getFigureType() {
         return FIGURE_TYPE;
     }
 
 
-    MultiAngleFigure(Point[] points){
+    MultiAngleFigure(Point[] points) {
         this.points = points;
         this.side = new Line[points.length];
-        for(int i = 0; i < points.length - 1; i++){
-            side[i] = new Line(points[i], points[i+1]);
+        for (int i = 0; i < points.length - 1; i++) {
+            side[i] = new Line(points[i], points[i + 1]);
         }
     }
 
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int newId) {
+        id = newId;
+    }
 
     @Override
     public String toString() {
@@ -38,8 +49,8 @@ public class MultiAngleFigure implements Figure {
 
     @Override
     public boolean isItAFigure() {
-        for(int i = 0; i < points.length - 1; i++){
-            if(this.points[i].equals(this.points[i+1])){
+        for (int i = 0; i < points.length - 1; i++) {
+            if (this.points[i].equals(this.points[i + 1])) {
                 LOGGER.error(" This MultiAngleFigure is not exist !!! ");
                 return false;
             }

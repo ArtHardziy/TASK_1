@@ -1,8 +1,8 @@
-package com.epam.jwd.Hardziyevich.model.impl;
+package com.epam.jwd.Hardziyevich.factory.impl;
 
-import com.epam.jwd.Hardziyevich.model.api.Figure;
-import com.epam.jwd.Hardziyevich.model.api.Point;
-import com.epam.jwd.Hardziyevich.decorator.api.FigureFactory;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,7 @@ public class SimpleLineFactory implements FigureFactory {
 
     }
 
-    public static SimpleLineFactory getSingleton() {
+    public static SimpleLineFactory getInstance() {
         if (instance == null) {
             instance = new SimpleLineFactory();
         }

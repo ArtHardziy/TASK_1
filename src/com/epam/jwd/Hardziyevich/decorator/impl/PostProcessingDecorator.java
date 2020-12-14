@@ -1,10 +1,10 @@
 package com.epam.jwd.Hardziyevich.decorator.impl;
 
 import com.epam.jwd.Hardziyevich.exception.FigureException;
-import com.epam.jwd.Hardziyevich.model.api.Figure;
-import com.epam.jwd.Hardziyevich.decorator.api.FigureFactory;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
-import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

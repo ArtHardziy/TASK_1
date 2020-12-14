@@ -1,7 +1,7 @@
 package com.epam.jwd.Hardziyevich.services.impl;
 
 import com.epam.jwd.Hardziyevich.exception.FigureException;
-import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
 
 public class MultiAngleFigureExistencePostProcessor implements FigurePostProcessor {

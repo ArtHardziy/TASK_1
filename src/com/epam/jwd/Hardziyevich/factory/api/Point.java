@@ -1,8 +1,8 @@
-package com.epam.jwd.Hardziyevich.model.api;
+package com.epam.jwd.Hardziyevich.factory.api;
 
 import java.util.Objects;
 
-public class Point {
+public class  Point {
     private final int x;
     private final int y;
 

@@ -1,7 +1,7 @@
-package com.epam.jwd.Hardziyevich.model.impl;
+package com.epam.jwd.Hardziyevich.factory.impl;
 
-import com.epam.jwd.Hardziyevich.model.api.Figure;
-import com.epam.jwd.Hardziyevich.model.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -12,6 +12,7 @@ public class Triangle implements Figure {
     private final Point[] point = new Point[3];
     private final Line[] side = new Line[3];
     private static final String FIGURE_TYPE = "Triangle";
+    private long id;
 
     public String getFigureType(){
         return FIGURE_TYPE;
@@ -30,6 +31,17 @@ public class Triangle implements Figure {
         this.side[1] = new Line(p1,p3);
         this.side[2] = new Line(p2,p3);
     }
+
+    @Override
+    public long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int newId) {
+        id = newId;
+    }
+
     @Override
     public Point[] getPoint(){
         return this.point;

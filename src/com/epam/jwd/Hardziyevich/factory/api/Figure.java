@@ -1,6 +1,6 @@
-package com.epam.jwd.Hardziyevich.model.api;
+package com.epam.jwd.Hardziyevich.factory.api;
 
-import com.epam.jwd.Hardziyevich.model.impl.Line;
+import com.epam.jwd.Hardziyevich.factory.impl.Line;
 
 public interface Figure {
     boolean isItAFigure();
@@ -12,4 +12,7 @@ public interface Figure {
     String toString();
     static final String FIGURE_TYPE = "Figure";
     String getFigureType();
+    long getId();
+    void setId(int newId);
+
 }

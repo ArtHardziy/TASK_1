@@ -1,6 +1,6 @@
 package com.epam.jwd.Hardziyevich.strategy;
 
-import com.epam.jwd.Hardziyevich.model.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.Figure;
 
 public class CalculateValue {
     private CharacteristicOfTheFigure characteristicOfTheFigure;

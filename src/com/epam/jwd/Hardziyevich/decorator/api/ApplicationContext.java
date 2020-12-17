@@ -1,8 +1,8 @@
 package com.epam.jwd.Hardziyevich.decorator.api;
 
-import com.epam.jwd.Hardziyevich.factory.api.Figure;
+import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 
 public interface ApplicationContext {
 
-    Figure createFigureFactory();
+    FigureFactory createFigureFactory();
 }

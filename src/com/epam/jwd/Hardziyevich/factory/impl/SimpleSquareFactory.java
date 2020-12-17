@@ -6,6 +6,8 @@ import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class SimpleSquareFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SimpleSquareFactory.class);
     private static SimpleSquareFactory instance;
@@ -21,8 +23,8 @@ public class SimpleSquareFactory implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(Point[] point) {
-        Figure square = new Square(point[0], point[1], point[2], point[3]);
+    public Figure createFigure(FigureType type, ArrayList<Point> point) {
+        Figure square = new Square(point.get(0), point.get(1), point.get(2), point.get(3));
         LOGGER.info("Square was created by SquareFactory !!!");
         return square;
     }

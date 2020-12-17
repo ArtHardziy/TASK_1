@@ -5,4 +5,5 @@ public enum FigureType {
     TRIANGLE,
     SQUARE,
     MULTI_ANGLE
+
 }

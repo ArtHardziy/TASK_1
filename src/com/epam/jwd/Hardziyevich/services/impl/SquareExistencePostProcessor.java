@@ -23,14 +23,14 @@ public class SquareExistencePostProcessor implements FigurePostProcessor {
         if(figure.getNumberOfVertices() != 4){
             throw new FigureException("It's not a square!!!");
         }
-        for (int i = 0; i < figure.getPoint().length - 1; i++) {
-            for (int j = i; j < figure.getPoint().length; j++) {
+        for (int i = 0; i < figure.getPoint().size() - 1; i++) {
+            for (int j = i; j < figure.getPoint().size(); j++) {
                 if (figure.getP(i).equals(figure.getP(j))) {
                     throw new FigureException("The points can't be the same");
                 }
             }
         }
-        for (int i = 0; i < figure.getPoint().length - 2; i++) {
+        for (int i = 0; i < figure.getPoint().size() - 2; i++) {
             if (((figure.getP(i).getX() - figure.getP(i + 1).getX()) / (figure.getP(i).getY() - figure.getP(i + 1).getY()))
                     == (figure.getP(i).getX() - figure.getP(i + 2).getX()) / (figure.getP(i).getY() - figure.getP(i + 2).getY())) {
                 throw new FigureException("Points cannot lie on the same straight line!!!");

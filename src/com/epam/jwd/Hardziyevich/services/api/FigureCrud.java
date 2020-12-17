@@ -4,6 +4,7 @@ import com.epam.jwd.Hardziyevich.exception.FigureException;
 import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.factory.api.Point;
 import com.epam.jwd.Hardziyevich.factory.impl.FigureType;
+import com.epam.jwd.Hardziyevich.services.impl.Specification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public interface FigureCrud {
     Figure findFigure(Figure figure) throws FigureException;
     void updateFigure(Figure oldFigure, Figure newFigure) throws FigureException;
     Figure findFigureById(long id) throws FigureException;
- //   List<Figure> findFiguresByCriteria(FigureCriteria figureCriteria)
+    ArrayList<Figure> findByCriteria(Specification specification) throws FigureException;
+
 
 }

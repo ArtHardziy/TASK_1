@@ -91,6 +91,19 @@ public class FigureStorage {
     }
 
 
+    public static List<Line> getLinesList() {
+        return LINES_LIST;
+    }
 
+    public static List<Square> getSquareList() {
+        return SQUARE_LIST;
+    }
 
+    public static List<MultiAngleFigure> getMultiAngleFiguresList() {
+        return MULTI_ANGLE_FIGURES_LIST;
+    }
+
+    public static List<Triangle> getTrianglesList() {
+        return TRIANGLES_LIST;
+    }
 }

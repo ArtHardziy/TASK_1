@@ -1,6 +1,9 @@
 package com.epam.jwd.Hardziyevich.factory.api;
 
+import com.epam.jwd.Hardziyevich.factory.impl.FigureType;
 import com.epam.jwd.Hardziyevich.factory.impl.Line;
+
+import java.util.ArrayList;
 
 public interface Figure {
     boolean isItAFigure();
@@ -8,10 +11,9 @@ public interface Figure {
     Line getSide(int i);
     int getNumberOfVertices();
     Point getP(int i);
-    Point[] getPoint();
+    ArrayList<Point> getPoint();
     String toString();
-    static final String FIGURE_TYPE = "Figure";
-    String getFigureType();
+    FigureType getFigureType();
     long getId();
     void setId(int newId);
 

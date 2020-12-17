@@ -7,6 +7,8 @@ import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class SimpleTriangleFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SimpleSquareFactory.class);
     private static SimpleTriangleFactory instance;
@@ -22,7 +24,7 @@ public class SimpleTriangleFactory implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(Point[] point){
-        return new Triangle(point[0], point[1], point[2]);
+    public Figure createFigure(FigureType type, ArrayList<Point> point){
+        return new Triangle(point.get(0), point.get(1), point.get(2));
     }
 }

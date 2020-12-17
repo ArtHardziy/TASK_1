@@ -19,19 +19,19 @@ public class FigureExistencePostProcessor implements FigurePostProcessor {
     private void exists(Figure figure) throws FigureException {
         ChooseFigureExistencePostProcessor postProcessor = new ChooseFigureExistencePostProcessor();
         switch (figure.getFigureType()){
-            case("Line"):
+            case LINE:
                 postProcessor.setFigurePostProcessor(LineExistencePostProcessor.getInstance());
                 postProcessor.executeFigureExistencePostProcessor(figure);
                 break;
-            case("Triangle"):
+            case TRIANGLE:
                 postProcessor.setFigurePostProcessor(TriangleExistancePostProcessor.getInstance());
                 postProcessor.executeFigureExistencePostProcessor(figure);
                 break;
-            case("Square"):
+            case SQUARE:
                 postProcessor.setFigurePostProcessor(SquareExistencePostProcessor.getInstance());
                 postProcessor.executeFigureExistencePostProcessor(figure);
                 break;
-            case("MultiAngleFigure"):
+            case MULTI_ANGLE:
                 postProcessor.setFigurePostProcessor(MultiAngleFigureExistencePostProcessor.getInstance());
                 postProcessor.executeFigureExistencePostProcessor(figure);
                 break;

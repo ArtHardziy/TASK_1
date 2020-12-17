@@ -5,9 +5,11 @@ import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
 import com.epam.jwd.Hardziyevich.factory.api.Point;
+import com.epam.jwd.Hardziyevich.factory.impl.FigureType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PostProcessingDecorator implements FigureFactory {
@@ -19,8 +21,8 @@ public class PostProcessingDecorator implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(Point[] points) {
-        Figure verifiedFigure = figureFactory.createFigure(points);
+    public Figure createFigure(FigureType type, ArrayList<Point> points) {
+        Figure verifiedFigure = figureFactory.createFigure(type,points);
         LOGGER.info("Running PostProcessorDecorator");
         for (FigurePostProcessor postProcessor : postProcessors) {
             try{

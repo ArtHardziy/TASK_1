@@ -5,26 +5,28 @@ import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 
 public class MultiAngleFigure implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(MultiAngleFigure.class);
-    private final Point[] points;
-    private final Line[] side;
-    static final String FIGURE_TYPE = "MultiAngleFigure";
+    private final ArrayList<Point> points;
+    private final ArrayList<Line> side;
+    static final FigureType FIGURE_TYPE = FigureType.MULTI_ANGLE;
     private long id = 0;
 
-    public String getFigureType() {
+    public FigureType getFigureType() {
         return FIGURE_TYPE;
     }
 
 
-    MultiAngleFigure(Point[] points) {
+    MultiAngleFigure(ArrayList<Point> points) {
         this.points = points;
-        this.side = new Line[points.length];
-        for (int i = 0; i < points.length - 1; i++) {
-            side[i] = new Line(points[i], points[i + 1]);
+        this.side = new ArrayList<>();
+        for (int i = 0; i < points.size() - 1; i++) {
+            side.add(new Line(points.get(i), points.get(i + 1)));
         }
     }
 
@@ -49,8 +51,8 @@ public class MultiAngleFigure implements Figure {
 
     @Override
     public boolean isItAFigure() {
-        for (int i = 0; i < points.length - 1; i++) {
-            if (this.points[i].equals(this.points[i + 1])) {
+        for (int i = 0; i < points.size() - 1; i++) {
+            if (this.points.get(i).equals(this.points.get(i + 1))) {
                 LOGGER.error(" This MultiAngleFigure is not exist !!! ");
                 return false;
             }
@@ -60,26 +62,26 @@ public class MultiAngleFigure implements Figure {
 
     @Override
     public int getNumberOfSide() {
-        return side.length;
+        return side.size();
     }
 
     @Override
     public Line getSide(int i) {
-        return side[i];
+        return side.get(i);
     }
 
     @Override
     public int getNumberOfVertices() {
-        return points.length;
+        return points.size();
     }
 
     @Override
     public Point getP(int i) {
-        return points[i];
+        return points.get(i);
     }
 
     @Override
-    public Point[] getPoint() {
+    public ArrayList<Point> getPoint() {
         return points;
     }
 
@@ -88,14 +90,11 @@ public class MultiAngleFigure implements Figure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MultiAngleFigure that = (MultiAngleFigure) o;
-        return Arrays.equals(points, that.points) &&
-                Arrays.equals(side, that.side);
+        return id == that.id && points.equals(that.points) && side.equals(that.side);
     }
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(points);
-        result = 31 * result + Arrays.hashCode(side);
-        return result;
+        return Objects.hash(points, side, id);
     }
 }

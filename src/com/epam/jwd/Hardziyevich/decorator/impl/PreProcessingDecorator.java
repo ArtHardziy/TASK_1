@@ -5,9 +5,11 @@ import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 import com.epam.jwd.Hardziyevich.decorator.api.FigurePreProcessor;
 import com.epam.jwd.Hardziyevich.factory.api.Point;
+import com.epam.jwd.Hardziyevich.factory.impl.FigureType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class PreProcessingDecorator implements FigureFactory {
@@ -22,7 +24,7 @@ public class PreProcessingDecorator implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(Point[] points) {
+    public Figure createFigure(FigureType type, ArrayList<Point> points) {
         LOGGER.info("Running PreProcessors");
         for (FigurePreProcessor preProcessor : preProcessors) {
             try {
@@ -31,7 +33,7 @@ public class PreProcessingDecorator implements FigureFactory {
                 LOGGER.error(e.getMessage() + Arrays.toString(e.getStackTrace()));
             }
         }
-        return figureFactory.createFigure(points);
+        return figureFactory.createFigure(type, points);
     }
 
 }

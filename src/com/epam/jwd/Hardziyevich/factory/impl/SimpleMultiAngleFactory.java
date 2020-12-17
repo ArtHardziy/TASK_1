@@ -6,6 +6,8 @@ import com.epam.jwd.Hardziyevich.factory.api.Point;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class SimpleMultiAngleFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SimpleMultiAngleFactory.class);
     private static SimpleMultiAngleFactory instance;
@@ -22,7 +24,7 @@ public class SimpleMultiAngleFactory implements FigureFactory {
     }
 
     @Override
-    public Figure createFigure(Point[] point) {
+    public Figure createFigure(FigureType type, ArrayList<Point> point) {
         Figure multiAngleFigure = new MultiAngleFigure(point);
         LOGGER.info("MultiAgleFigure was created by MultiAngleFactory !!!");
         return multiAngleFigure;

@@ -2,34 +2,37 @@ package com.epam.jwd.Hardziyevich.factory.impl;
 
 import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.factory.api.Point;
+import com.epam.jwd.Hardziyevich.services.figureStorage.FigureStorage;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Triangle implements Figure {
     private static final Logger LOGGER = LogManager.getLogger(Triangle.class);
-    private final Point[] point = new Point[3];
-    private final Line[] side = new Line[3];
-    private static final String FIGURE_TYPE = "Triangle";
+    private final ArrayList<Point> point = new ArrayList<>(3);
+    private final ArrayList<Line> side = new ArrayList<>(3);
+    private static final FigureType FIGURE_TYPE = FigureType.TRIANGLE;
     private long id;
 
-    public String getFigureType(){
+    public FigureType getFigureType(){
         return FIGURE_TYPE;
     }
 
-    public Line[] getSide() {
+    public ArrayList<Line> getSide() {
         return side;
     }
 
     Triangle(Point p1, Point p2, Point p3){
-        this.point[0] = p1;
-        this.point[1] = p2;
-        this.point[2] = p3;
+        point.add(0,p1);
+        point.add(1,p2);
+        point.add(2,p3);
 
-        this.side[0] = new Line(p1,p2);
-        this.side[1] = new Line(p1,p3);
-        this.side[2] = new Line(p2,p3);
+        side.add(0, new Line(p1, p2));
+        side.add(1, new Line(p2, p3));
+        side.add(2, new Line(p3, p1));
     }
 
     @Override
@@ -43,7 +46,7 @@ public class Triangle implements Figure {
     }
 
     @Override
-    public Point[] getPoint(){
+    public ArrayList<Point> getPoint(){
         return this.point;
     }
 
@@ -52,38 +55,35 @@ public class Triangle implements Figure {
         while( i > 2 || i < 0 ){
             LOGGER.error("You entered an invalid number");
         }
-        return point[i];
+        return point.get(i);
     }
 
     public int getNumberOfSide() {
-        return getSide().length;
+        return getSide().size();
     }
 
     @Override
     public String toString() {
-        return "Triangle " + point[0].toString() + point[1].toString() + point[2].toString();
+        return "Triangle " + point.get(0).toString() + point.get(1).toString() + point.get(2).toString();
     }
 
     @Override
     public boolean isItAFigure() {
-        if(side[0].getLenght() > side[1].getLenght() + side[2].getLenght()) {
+        if(side.get(0).getLenght() > side.get(1).getLenght() + side.get(2).getLenght()) {
             return false;
-        } else if(side[1].getLenght() > side[0].getLenght() + side[2].getLenght()){
+        } else if(side.get(1).getLenght() > side.get(0).getLenght() + side.get(2).getLenght()){
             return false;
-        } else if(side[2].getLenght() > side[0].getLenght() + side[1].getLenght()){
-            return false;
-        }
-        return true;
+        } else return !(side.get(2).getLenght() > side.get(0).getLenght() + side.get(1).getLenght());
     }
 
     @Override
     public Line getSide(int i) {
-        return side[i];
+        return side.get(i);
     }
 
     @Override
     public int getNumberOfVertices() {
-        return point.length;
+        return point.size();
     }
 
     @Override
@@ -91,14 +91,11 @@ public class Triangle implements Figure {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Triangle triangle = (Triangle) o;
-        return Arrays.equals(point, triangle.point) &&
-                Arrays.equals(side, triangle.side);
+        return id == triangle.id && point.equals(triangle.point) && side.equals(triangle.side);
     }
 
     @Override
     public int hashCode() {
-        int result = Arrays.hashCode(point);
-        result = 31 * result + Arrays.hashCode(side);
-        return result;
+        return Objects.hash(point, side, id);
     }
 }

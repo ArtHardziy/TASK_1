@@ -1,14 +1,13 @@
 package com.epam.jwd.Hardziyevich.decorator.impl;
 
 import com.epam.jwd.Hardziyevich.decorator.api.ApplicationContext;
-import com.epam.jwd.Hardziyevich.factory.api.Figure;
-import com.epam.jwd.Hardziyevich.factory.api.Point;
+import com.epam.jwd.Hardziyevich.factory.api.FigureFactory;
 import com.epam.jwd.Hardziyevich.factory.impl.SimpleNewFigureFactory;
-import com.epam.jwd.Hardziyevich.services.impl.ServicesPoint;
-import com.epam.jwd.Hardziyevich.services.impl.ChooseTypeFigureFactory;
+
 
 public class ConcreteApplicationContext implements ApplicationContext {
     private static ConcreteApplicationContext instance;
+    private static FigureFactory figureFactory;
     private ConcreteApplicationContext(){
 
     }
@@ -18,10 +17,10 @@ public class ConcreteApplicationContext implements ApplicationContext {
         } return instance;
     }
     @Override
-    public Figure createFigureFactory() {
-        SimpleNewFigureFactory newFigureFactory = SimpleNewFigureFactory.getInstance();
-        newFigureFactory.chooseAbstractFigureFactory(new PostProcessingDecorator(new PreProcessingDecorator(ChooseTypeFigureFactory.enterTypeOfFigure())));
-        Point[] points = ServicesPoint.enterPoints(2);
-        return newFigureFactory.creation(points);
+    public FigureFactory createFigureFactory() {
+        if (figureFactory == null) {
+            figureFactory = new PostProcessingDecorator(new PreProcessingDecorator(SimpleNewFigureFactory.getInstance()));
+        }
+        return figureFactory;
     }
 }

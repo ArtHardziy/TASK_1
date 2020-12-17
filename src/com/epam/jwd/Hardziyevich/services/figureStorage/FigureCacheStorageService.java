@@ -1,4 +1,4 @@
-package com.epam.jwd.Hardziyevich.services.impl;
+package com.epam.jwd.Hardziyevich.services.figureStorage;
 
 import com.epam.jwd.Hardziyevich.exception.FigureException;
 import com.epam.jwd.Hardziyevich.exception.FigureNotExistException;
@@ -9,14 +9,10 @@ import com.epam.jwd.Hardziyevich.factory.impl.MultiAngleFigure;
 import com.epam.jwd.Hardziyevich.factory.impl.Square;
 import com.epam.jwd.Hardziyevich.factory.impl.Triangle;
 import com.epam.jwd.Hardziyevich.services.api.FigureStorageService;
-import com.epam.jwd.Hardziyevich.services.figureStorage.FigureStorage;
 
 public class FigureCacheStorageService implements FigureStorageService {
     private static FigureCacheStorageService instance;
     private static final FigureStorage FIGURE_LIST = FigureStorage.getInstance();
-
-
-
     private FigureCacheStorageService(){
 
     }
@@ -31,16 +27,16 @@ public class FigureCacheStorageService implements FigureStorageService {
     @Override
     public Figure fetchFigureFromStorage(Figure figure) throws FigureException {
         switch (figure.getFigureType()) {
-            case("Line"):
+            case LINE:
                 figure = FIGURE_LIST.fetchLineFromStorage((Line) figure);
                 break;
-            case("Triangle"):
+            case TRIANGLE:
                 figure = FIGURE_LIST.fetchTriangleFromStorage((Triangle) figure);
                 break;
-            case("Square"):
+            case SQUARE:
                 figure = FIGURE_LIST.fetchSquareFromStorage((Square) figure);
                 break;
-            case("MultiAngleFigure"):
+            case MULTI_ANGLE:
                 figure = FIGURE_LIST.fetchMultiAngleFigureFromStorage((MultiAngleFigure) figure);
                 break;
             default:
@@ -52,16 +48,16 @@ public class FigureCacheStorageService implements FigureStorageService {
     @Override
     public void addFigureToStorage(Figure figure) throws FigureException {
         switch(figure.getFigureType()){
-            case("Line"):
+            case LINE:
                 FIGURE_LIST.addLineToStorage((Line) figure);
                 break;
-            case("Triangle"):
+            case TRIANGLE:
                 FIGURE_LIST.addTriangleToStorage((Triangle) figure);
                 break;
-            case("Square"):
+            case SQUARE:
                 FIGURE_LIST.addSquareToStorage((Square) figure);
                 break;
-            case("MultiAngleFigure"):
+            case MULTI_ANGLE:
                 FIGURE_LIST.addMultiAngleFigureToStorage((MultiAngleFigure) figure);
                 break;
         }
@@ -71,16 +67,16 @@ public class FigureCacheStorageService implements FigureStorageService {
     @Override
     public void removeFigureFromStorage(Figure figure) throws FigureException {
         switch(figure.getFigureType()) {
-            case ("Line"):
+            case LINE:
                 FIGURE_LIST.removeLineFromStorage((Line) figure);
                 break;
-            case ("Triangle"):
+            case TRIANGLE:
                 FIGURE_LIST.removeTriangleFromStorage((Triangle) figure);
                 break;
-            case ("Square"):
+            case SQUARE:
                 FIGURE_LIST.removeSquareFromStorage((Square) figure);
                 break;
-            case ("MultiAngleFigure"):
+            case MULTI_ANGLE:
                 FIGURE_LIST.removeMultiAngleFigureFromStorage((MultiAngleFigure) figure);
                 break;
         }
@@ -108,4 +104,5 @@ public class FigureCacheStorageService implements FigureStorageService {
         }
         return figure;
     }
+
 }

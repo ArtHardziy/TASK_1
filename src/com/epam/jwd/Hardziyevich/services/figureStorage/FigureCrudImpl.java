@@ -30,8 +30,8 @@ public class FigureCrudImpl implements FigureCrud {
     @Override
     public ArrayList<Figure> findByCriteria(Specification specification) throws FigureException {
         List<Figure> figures = new ArrayList<>();
-        if(specification.getTypeOfTheRequiredFigure() != null){
-            switch (specification.getTypeOfTheRequiredFigure()){
+        if (specification.getTypeOfTheRequiredFigure() != null) {
+            switch (specification.getTypeOfTheRequiredFigure()) {
                 case LINE:
                     figures = FigureStorage.getLinesList().stream().filter(p -> p.getFigureType() == FigureType.LINE).collect(Collectors.toList());
                     break;
@@ -46,12 +46,12 @@ public class FigureCrudImpl implements FigureCrud {
                     break;
             }
         }
-        if(specification.getStartOfTheRange() - specification.getEndOfTheRange() != 0){
-                long count = specification.getStartOfTheRange();
-                while(specification.getStartOfTheRange() <= specification.getEndOfTheRange()){
-                    figures.add(findFigureById(count));
-                    count++;
-                }
+        if (specification.getStartOfTheRange() - specification.getEndOfTheRange() != 0) {
+            long count = specification.getStartOfTheRange();
+            while (specification.getStartOfTheRange() <= specification.getEndOfTheRange()) {
+                figures.add(findFigureById(count));
+                count++;
+            }
 
 
         }
@@ -99,7 +99,7 @@ public class FigureCrudImpl implements FigureCrud {
         Set<FigureType> figureTypes = EnumSet.allOf(FigureType.class);
         Iterator<FigureType> iterator = figureTypes.iterator();
         Figure figure = null;
-        while(iterator.hasNext() && figure   == null){
+        while (iterator.hasNext() && figure == null) {
             figure = FIGURE_STORAGE_SERVICE.fetchFigureByIdFromStorage(iterator.next(), id);
         }
         return figure;

@@ -14,7 +14,7 @@ public class DuplicatePointsPreProcessor implements FigurePreProcessor {
     @Override
     public void preProcess(ArrayList<Point> points) throws FigureException {
         for (int i = 0; i < points.size() - 1; i++) {
-            for (int j = points.size()- 1; j >= i + 1; j--) {
+            for (int j = points.size() - 1; j >= i + 1; j--) {
                 if (points.get(i).equals(points.get(j))) {
                     throw new FigureException("The points can't be the same");
                 }

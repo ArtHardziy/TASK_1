@@ -12,14 +12,15 @@ public class SimpleSquareFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SimpleSquareFactory.class);
     private static SimpleSquareFactory instance;
 
-    private SimpleSquareFactory(){
+    private SimpleSquareFactory() {
 
     }
 
-    public static SimpleSquareFactory getInstance(){
-        if(instance == null){
+    public static SimpleSquareFactory getInstance() {
+        if (instance == null) {
             instance = new SimpleSquareFactory();
-        } return instance;
+        }
+        return instance;
     }
 
     @Override

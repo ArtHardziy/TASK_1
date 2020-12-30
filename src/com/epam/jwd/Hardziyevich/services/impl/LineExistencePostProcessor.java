@@ -10,12 +10,13 @@ public class LineExistencePostProcessor implements FigurePostProcessor {
     private LineExistencePostProcessor() {
     }
 
-    public static LineExistencePostProcessor getInstance(){
-        if(instance == null){
+    public static LineExistencePostProcessor getInstance() {
+        if (instance == null) {
             instance = new LineExistencePostProcessor();
         }
         return instance;
     }
+
     @Override
     public Figure process(Figure figure) throws FigureException {
         if (figure.getNumberOfVertices() != 2) {

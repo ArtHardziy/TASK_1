@@ -16,18 +16,19 @@ public class PostProcessingDecorator implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(PostProcessingDecorator.class);
     private final FigurePostProcessor[] postProcessors = new FigurePostProcessor[]{new FigureExistencePostProcessor()};
     private final FigureFactory figureFactory;
+
     public PostProcessingDecorator(FigureFactory figureFactory) {
         this.figureFactory = figureFactory;
     }
 
     @Override
     public Figure createFigure(FigureType type, ArrayList<Point> points) {
-        Figure verifiedFigure = figureFactory.createFigure(type,points);
+        Figure verifiedFigure = figureFactory.createFigure(type, points);
         LOGGER.info("Running PostProcessorDecorator");
         for (FigurePostProcessor postProcessor : postProcessors) {
-            try{
+            try {
                 verifiedFigure = postProcessor.process(verifiedFigure);
-            } catch(FigureException e){
+            } catch (FigureException e) {
                 LOGGER.error(e.getMessage() + Arrays.toString(e.getStackTrace()));
             }
         }

@@ -7,12 +7,12 @@ import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
 public class SquareExistencePostProcessor implements FigurePostProcessor {
     private static SquareExistencePostProcessor instance;
 
-    private SquareExistencePostProcessor(){
+    private SquareExistencePostProcessor() {
 
     }
 
-    public static SquareExistencePostProcessor getInstance(){
-        if(instance == null){
+    public static SquareExistencePostProcessor getInstance() {
+        if (instance == null) {
             instance = new SquareExistencePostProcessor();
         }
         return instance;
@@ -20,7 +20,7 @@ public class SquareExistencePostProcessor implements FigurePostProcessor {
 
     @Override
     public Figure process(Figure figure) throws FigureException {
-        if(figure.getNumberOfVertices() != 4){
+        if (figure.getNumberOfVertices() != 4) {
             throw new FigureException("It's not a square!!!");
         }
         for (int i = 0; i < figure.getPoint().size() - 1; i++) {

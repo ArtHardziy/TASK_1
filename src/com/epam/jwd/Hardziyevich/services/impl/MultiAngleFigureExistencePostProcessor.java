@@ -20,9 +20,9 @@ public class MultiAngleFigureExistencePostProcessor implements FigurePostProcess
 
     @Override
     public Figure process(Figure figure) throws FigureException {
-        for(int i = 0; i < figure.getNumberOfVertices() - 1; i++){
-            for(int j = i; j < figure.getNumberOfVertices(); j++){
-                if(figure.getP(i).equals(figure.getP(j))){
+        for (int i = 0; i < figure.getNumberOfVertices() - 1; i++) {
+            for (int j = i; j < figure.getNumberOfVertices(); j++) {
+                if (figure.getP(i).equals(figure.getP(j))) {
                     throw new FigureException("The points can't be the same!!!");
                 }
             }

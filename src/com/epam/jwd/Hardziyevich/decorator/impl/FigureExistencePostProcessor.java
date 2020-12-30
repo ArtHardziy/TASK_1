@@ -12,13 +12,13 @@ import com.epam.jwd.Hardziyevich.services.impl.TriangleExistancePostProcessor;
 public class FigureExistencePostProcessor implements FigurePostProcessor {
     @Override
     public Figure process(Figure figure) throws FigureException {
-       exists(figure);
-       return figure;
+        exists(figure);
+        return figure;
     }
 
     private void exists(Figure figure) throws FigureException {
         ChooseFigureExistencePostProcessor postProcessor = new ChooseFigureExistencePostProcessor();
-        switch (figure.getFigureType()){
+        switch (figure.getFigureType()) {
             case LINE:
                 postProcessor.setFigurePostProcessor(LineExistencePostProcessor.getInstance());
                 postProcessor.executeFigureExistencePostProcessor(figure);

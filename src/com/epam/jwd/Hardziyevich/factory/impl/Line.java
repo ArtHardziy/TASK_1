@@ -15,24 +15,25 @@ public class Line implements Figure {
     private static final FigureType FIGURE_TYPE = FigureType.LINE;
     private long id = 0;
 
-    public FigureType getFigureType(){
+    public FigureType getFigureType() {
         return FIGURE_TYPE;
     }
 
-    Line(Point p1, Point p2){
-        this.point.add(0,p1);
-        this.point.add(1,p2);
+    Line(Point p1, Point p2) {
+        this.point.add(0, p1);
+        this.point.add(1, p2);
     }
+
     @Override
     public Point getP(int i) {
-        while( i > 1 || i < 0 ){
+        while (i > 1 || i < 0) {
             LOGGER.error("You entered an invalid number");
         }
         return point.get(i);
     }
 
-    public double getLenght(){
-      return Math.sqrt(Math.abs(Math.pow((point.get(1).getX() - point.get(0).getX()),2) - Math.pow((point.get(1).getY() - point.get(0).getY()),2)));
+    public double getLenght() {
+        return Math.sqrt(Math.abs(Math.pow((point.get(1).getX() - point.get(0).getX()), 2) - Math.pow((point.get(1).getY() - point.get(0).getY()), 2)));
     }
 
     public boolean isItAFigure() {
@@ -64,7 +65,7 @@ public class Line implements Figure {
 
     @Override
     public Line getSide(int i) {
-        return new Line(point.get(0),point.get(1));
+        return new Line(point.get(0), point.get(1));
     }
 
     @Override

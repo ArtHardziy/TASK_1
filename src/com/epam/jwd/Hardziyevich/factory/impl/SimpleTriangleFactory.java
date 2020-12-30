@@ -13,18 +13,19 @@ public class SimpleTriangleFactory implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(SimpleSquareFactory.class);
     private static SimpleTriangleFactory instance;
 
-    private SimpleTriangleFactory(){
+    private SimpleTriangleFactory() {
 
     }
 
-    public static SimpleTriangleFactory getInstance(){
-        if(instance == null){
+    public static SimpleTriangleFactory getInstance() {
+        if (instance == null) {
             instance = new SimpleTriangleFactory();
-        } return instance;
+        }
+        return instance;
     }
 
     @Override
-    public Figure createFigure(FigureType type, ArrayList<Point> point){
+    public Figure createFigure(FigureType type, ArrayList<Point> point) {
         return new Triangle(point.get(0), point.get(1), point.get(2));
     }
 }

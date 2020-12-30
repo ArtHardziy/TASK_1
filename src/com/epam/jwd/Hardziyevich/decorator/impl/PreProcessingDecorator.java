@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class PreProcessingDecorator implements FigureFactory {
     private static final Logger LOGGER = LogManager.getLogger(PreProcessingDecorator.class);
 
-    private final FigurePreProcessor[] preProcessors = new FigurePreProcessor[] {new DuplicatePointsPreProcessor()};
+    private final FigurePreProcessor[] preProcessors = new FigurePreProcessor[]{new DuplicatePointsPreProcessor()};
 
     private final FigureFactory figureFactory;
 
@@ -29,7 +29,7 @@ public class PreProcessingDecorator implements FigureFactory {
         for (FigurePreProcessor preProcessor : preProcessors) {
             try {
                 preProcessor.preProcess(points);
-            }catch (FigureException e){
+            } catch (FigureException e) {
                 LOGGER.error(e.getMessage() + Arrays.toString(e.getStackTrace()));
             }
         }

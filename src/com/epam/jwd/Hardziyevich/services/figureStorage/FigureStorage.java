@@ -16,29 +16,30 @@ public class FigureStorage {
     private static final List<Triangle> TRIANGLES_LIST = new ArrayList<>();
 
 
-    private FigureStorage(){
+    private FigureStorage() {
 
     }
 
-    public static FigureStorage getInstance(){
-        if(instance == null){
+    public static FigureStorage getInstance() {
+        if (instance == null) {
             instance = new FigureStorage();
-        } return instance;
+        }
+        return instance;
     }
 
-    public void addLineToStorage(Line newLine){
+    public void addLineToStorage(Line newLine) {
         LINES_LIST.add(newLine);
     }
 
-    public void addSquareToStorage(Square newSquare){
+    public void addSquareToStorage(Square newSquare) {
         SQUARE_LIST.add(newSquare);
     }
 
-    public void addTriangleToStorage(Triangle newTriangle){
+    public void addTriangleToStorage(Triangle newTriangle) {
         TRIANGLES_LIST.add(newTriangle);
     }
 
-    public void addMultiAngleFigureToStorage(MultiAngleFigure newMultiAngleFigure){
+    public void addMultiAngleFigureToStorage(MultiAngleFigure newMultiAngleFigure) {
         MULTI_ANGLE_FIGURES_LIST.add(newMultiAngleFigure);
     }
 
@@ -58,35 +59,35 @@ public class FigureStorage {
         MULTI_ANGLE_FIGURES_LIST.remove(newMultiAngleFigure);
     }
 
-    public Triangle fetchTriangleFromStorage(Triangle triangle){
+    public Triangle fetchTriangleFromStorage(Triangle triangle) {
         return TRIANGLES_LIST.stream().filter(triangleFromStorage -> triangleFromStorage.equals(triangle)).findAny().orElse(null);
     }
 
-    public Line fetchLineFromStorage(Line line){
+    public Line fetchLineFromStorage(Line line) {
         return LINES_LIST.stream().filter(lineFromStorage -> lineFromStorage.equals(line)).findAny().orElse(null);
     }
 
-    public Square fetchSquareFromStorage(Square square){
+    public Square fetchSquareFromStorage(Square square) {
         return SQUARE_LIST.stream().filter(squareFromStorage -> squareFromStorage.equals(square)).findAny().orElse(null);
     }
 
-    public MultiAngleFigure fetchMultiAngleFigureFromStorage(MultiAngleFigure multiAngleFigure){
+    public MultiAngleFigure fetchMultiAngleFigureFromStorage(MultiAngleFigure multiAngleFigure) {
         return MULTI_ANGLE_FIGURES_LIST.stream().filter(multiAngleFigureFromStorage -> multiAngleFigureFromStorage.equals(multiAngleFigure)).findAny().orElse(null);
     }
 
-    public Line fetchLineFromStorageById(long id){
+    public Line fetchLineFromStorageById(long id) {
         return LINES_LIST.stream().filter(lineFromStorage -> lineFromStorage.getId() == id).findAny().orElse(null);
     }
 
-    public Triangle fetchTriangleFromStorageById(long id){
+    public Triangle fetchTriangleFromStorageById(long id) {
         return TRIANGLES_LIST.stream().filter(triangleFromStorage -> triangleFromStorage.getId() == id).findAny().orElse(null);
     }
 
-    public Square fetchSquareFromStorageById(long id){
+    public Square fetchSquareFromStorageById(long id) {
         return SQUARE_LIST.stream().filter(squareFromStorage -> squareFromStorage.getId() == id).findAny().orElse(null);
     }
 
-    public MultiAngleFigure fetchMultiAngleFigureFromStorageById(long id){
+    public MultiAngleFigure fetchMultiAngleFigureFromStorageById(long id) {
         return MULTI_ANGLE_FIGURES_LIST.stream().filter(multiAngleFigureFromStorage -> multiAngleFigureFromStorage.getId() == id).findAny().orElse(null);
     }
 

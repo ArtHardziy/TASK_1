@@ -5,16 +5,15 @@ import com.epam.jwd.Hardziyevich.factory.api.Figure;
 import com.epam.jwd.Hardziyevich.decorator.api.FigurePostProcessor;
 
 public class ChooseFigureExistencePostProcessor {
-     private FigurePostProcessor figurePostProcessor;
+    private FigurePostProcessor figurePostProcessor;
 
-     public void setFigurePostProcessor(FigurePostProcessor figurePostProcessor){
-         this.figurePostProcessor = figurePostProcessor;
-     }
-     public Figure executeFigureExistencePostProcessor (Figure figure) throws FigureException {
-         return figurePostProcessor.process(figure);
-     }
+    public void setFigurePostProcessor(FigurePostProcessor figurePostProcessor) {
+        this.figurePostProcessor = figurePostProcessor;
+    }
 
-
+    public Figure executeFigureExistencePostProcessor(Figure figure) throws FigureException {
+        return figurePostProcessor.process(figure);
+    }
 
 
 }

@@ -2,11 +2,11 @@ package com.epam.jwd.Hardziyevich.factory.api;
 
 import java.util.Objects;
 
-public class  Point {
+public class Point {
     private final int x;
     private final int y;
 
-    public Point(int value1, int value2){
+    public Point(int value1, int value2) {
         this.x = value1;
         this.y = value2;
     }
@@ -14,6 +14,7 @@ public class  Point {
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }

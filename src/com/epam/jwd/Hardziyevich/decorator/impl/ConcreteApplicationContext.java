@@ -7,15 +7,23 @@ import com.epam.jwd.Hardziyevich.factory.impl.SimpleNewFigureFactory;
 
 public class ConcreteApplicationContext implements ApplicationContext {
     private static ConcreteApplicationContext instance;
-    private static FigureFactory figureFactory;
-    private ConcreteApplicationContext(){
+    private static FigureFactory figureFactory = getInstance().createFigureFactory();
+
+    private ConcreteApplicationContext() {
 
     }
-    public static ConcreteApplicationContext getInstance(){
-        if(instance == null){
+
+    public static ConcreteApplicationContext getInstance() {
+        if (instance == null) {
             instance = new ConcreteApplicationContext();
-        } return instance;
+        }
+        return instance;
     }
+
+    public static FigureFactory getFigureFactory() {
+        return figureFactory;
+    }
+
     @Override
     public FigureFactory createFigureFactory() {
         if (figureFactory == null) {

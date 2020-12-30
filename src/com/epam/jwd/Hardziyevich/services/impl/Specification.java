@@ -8,13 +8,13 @@ public class Specification {
     private final int startOfTheRange;
     private final int endOfTheRange;
 
-    private Specification(FigureType figureType, int startOfTheRange, int endOfTheRange){
+    private Specification(FigureType figureType, int startOfTheRange, int endOfTheRange) {
         this.typeOfTheRequiredFigure = figureType;
         this.startOfTheRange = startOfTheRange;
         this.endOfTheRange = endOfTheRange;
     }
 
-    public FigureType getTypeOfTheRequiredFigure(){
+    public FigureType getTypeOfTheRequiredFigure() {
         return this.typeOfTheRequiredFigure;
     }
 
@@ -26,33 +26,31 @@ public class Specification {
         return endOfTheRange;
     }
 
-    public static Builder builder(){
-
+    public static Builder builder() {
         return new Builder();
-
     }
-    private static class Builder{
+
+    private static class Builder {
         private FigureType typeOfTheRequiredFigure;
         private int startOfTheRange;
         private int endOfTheRange;
 
-        public Builder findFigure(FigureType figureType){
+        public Builder findFigure(FigureType figureType) {
             this.typeOfTheRequiredFigure = figureType;
             return this;
         }
 
-        public Builder withIdInRange(int startId, int endId){
+        public Builder withIdInRange(int startId, int endId) {
             this.startOfTheRange = startId;
             this.endOfTheRange = endId;
             return this;
         }
 
 
-        public Specification build(){
-            return new Specification(typeOfTheRequiredFigure, startOfTheRange, endOfTheRange);
+        public Specification build() {
+            return new Specification(this.typeOfTheRequiredFigure,
+                    this.startOfTheRange,
+                    this.endOfTheRange);
         }
-
     }
-
-
 }

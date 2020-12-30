@@ -17,7 +17,7 @@ public class Triangle implements Figure {
     private static final FigureType FIGURE_TYPE = FigureType.TRIANGLE;
     private long id;
 
-    public FigureType getFigureType(){
+    public FigureType getFigureType() {
         return FIGURE_TYPE;
     }
 
@@ -25,10 +25,10 @@ public class Triangle implements Figure {
         return side;
     }
 
-    Triangle(Point p1, Point p2, Point p3){
-        point.add(0,p1);
-        point.add(1,p2);
-        point.add(2,p3);
+    Triangle(Point p1, Point p2, Point p3) {
+        point.add(0, p1);
+        point.add(1, p2);
+        point.add(2, p3);
 
         side.add(0, new Line(p1, p2));
         side.add(1, new Line(p2, p3));
@@ -46,13 +46,13 @@ public class Triangle implements Figure {
     }
 
     @Override
-    public ArrayList<Point> getPoint(){
+    public ArrayList<Point> getPoint() {
         return this.point;
     }
 
     @Override
     public Point getP(int i) {
-        while( i > 2 || i < 0 ){
+        while (i > 2 || i < 0) {
             LOGGER.error("You entered an invalid number");
         }
         return point.get(i);
@@ -69,9 +69,9 @@ public class Triangle implements Figure {
 
     @Override
     public boolean isItAFigure() {
-        if(side.get(0).getLenght() > side.get(1).getLenght() + side.get(2).getLenght()) {
+        if (side.get(0).getLenght() > side.get(1).getLenght() + side.get(2).getLenght()) {
             return false;
-        } else if(side.get(1).getLenght() > side.get(0).getLenght() + side.get(2).getLenght()){
+        } else if (side.get(1).getLenght() > side.get(0).getLenght() + side.get(2).getLenght()) {
             return false;
         } else return !(side.get(2).getLenght() > side.get(0).getLenght() + side.get(1).getLenght());
     }

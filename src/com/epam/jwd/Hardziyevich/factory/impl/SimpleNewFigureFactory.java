@@ -24,6 +24,7 @@ public class SimpleNewFigureFactory implements FigureFactory {
         }
         return instance;
     }
+
     @Override
     public Figure createFigure(FigureType type, ArrayList<Point> points) {
         return figureFactory.createFigure(type, points);
